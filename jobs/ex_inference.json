@@ -1,0 +1,65 @@
+{
+    "description": [
+        "position",
+        "orientation",
+        "volunteer"
+    ],
+    "valid_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+    ],
+    "data": {
+        "Position_0": {
+            "Front": {
+                "Volunteer_0": [
+                    "data/sample/img0_0.png",
+                    "data/sample/img0_1.png"
+                ],
+                "Volunteer_1": [
+                    "data/sample/img1_0.png",
+                    "data/sample/img1_1.png"
+                ]
+            },
+            "Side": {
+                "Volunteer_0": [
+                    "data/sample/img2_0.png",
+                    "data/sample/img2_1.png"
+                ],
+                "Volunteer_1": [
+                    "data/sample/img3_0.png",
+                    "data/sample/img3_1.png"
+                ]
+            }
+        },
+        "Position_1": {
+            "Front": {
+                "Volunteer_0": [
+                    "data/sample/img4_0.png",
+                    "data/sample/img4_1.png"
+                ],
+                "Volunteer_1": [
+                    "data/sample/img5_0.png",
+                    "data/sample/img5_1.png"
+                ]
+            },
+            "Side": {
+                "Volunteer_0": [
+                    "data/sample/img6_0.png",
+                    "data/sample/img6_1.png"
+                ],
+                "Volunteer_1": [
+                    "data/sample/img7_0.png",
+                    "data/sample/img7_1.png"
+                ]
+            }
+        }
+    }
+}

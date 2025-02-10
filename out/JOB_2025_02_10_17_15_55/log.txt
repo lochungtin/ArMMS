@@ -1,0 +1,92 @@
+[2025-02-10 17:15:55] - ======== JOB INITIALISATION ========
+
+[2025-02-10 17:15:55] [Action] - Validating input JSON ...
+
+[2025-02-10 17:15:55] [Action] - Validating image paths ...
+
+[2025-02-10 17:15:55] [Action] - Creating leaf directories ...
+
+[2025-02-10 17:15:55] - ======== DETECTION STEP ========
+
+[2025-02-10 17:15:55] [Action] - Logger created: [DICT_4X4_100] type selected
+
+[2025-02-10 17:15:55] [Action] - Starting detection process ...
+
+[2025-02-10 17:15:55] [Action] - Started detection for img0_0.png
+[2025-02-10 17:15:55] [Action] -  -> Detected markers: 0 1 2 3 4 5 6 7
+[2025-02-10 17:15:55] [Action] -  -> Output file saved successfully.
+
+[2025-02-10 17:15:55] [Action] - Started detection for img0_1.png
+[2025-02-10 17:15:55] [Action] -  -> Detected markers: 0 1 2 3 4 5 6 7
+[2025-02-10 17:15:55] [Action] -  -> Output file saved successfully.
+
+[2025-02-10 17:15:55] [Action] - Started detection for img1_0.png
+[2025-02-10 17:15:55] [Action] -  -> Detected markers: 0 1 2 3 4 5 6 7
+[2025-02-10 17:15:55] [Action] -  -> Output file saved successfully.
+
+[2025-02-10 17:15:55] [Action] - Started detection for img1_1.png
+[2025-02-10 17:15:56] [Action] -  -> Detected markers: 0 1 2 3 4 5 6 7
+[2025-02-10 17:15:56] [Action] -  -> Output file saved successfully.
+
+[2025-02-10 17:15:56] [Action] - Started detection for img2_0.png
+[2025-02-10 17:15:56] [Action] -  -> Detected markers: 0 1 2 3 4 5 6 7
+[2025-02-10 17:15:56] [Action] -  -> Output file saved successfully.
+
+[2025-02-10 17:15:56] [Action] - Started detection for img2_1.png
+[2025-02-10 17:15:56] [Action] -  -> Detected markers: 0 1 2 3 4 5 6 7
+[2025-02-10 17:15:56] [Action] -  -> Output file saved successfully.
+
+[2025-02-10 17:15:56] [Action] - Started detection for img3_0.png
+[2025-02-10 17:15:56] [Action] -  -> Detected markers: 0 1 2 3 4 5 6 7
+[2025-02-10 17:15:56] [Action] -  -> Output file saved successfully.
+
+[2025-02-10 17:15:56] [Action] - Started detection for img3_1.png
+[2025-02-10 17:15:56] [Action] -  -> Detected markers: 0 1 2 3 4 5 6 7
+[2025-02-10 17:15:56] [Action] -  -> Output file saved successfully.
+
+[2025-02-10 17:15:56] [Action] - Started detection for img4_0.png
+[2025-02-10 17:15:56] [Action] -  -> Detected markers: 0 1 2 3 4 5 6 7
+[2025-02-10 17:15:56] [Action] -  -> Output file saved successfully.
+
+[2025-02-10 17:15:56] [Action] - Started detection for img4_1.png
+[2025-02-10 17:15:56] [Action] -  -> Detected markers: 0 1 2 3 4 5 6 7
+[2025-02-10 17:15:56] [Action] -  -> Output file saved successfully.
+
+[2025-02-10 17:15:56] [Action] - Started detection for img5_0.png
+[2025-02-10 17:15:56] [Action] -  -> Detected markers: 0 1 2 3 4 5 6 7
+[2025-02-10 17:15:56] [Action] -  -> Output file saved successfully.
+
+[2025-02-10 17:15:56] [Action] - Started detection for img5_1.png
+[2025-02-10 17:15:56] [Action] -  -> Detected markers: 0 1 2 3 4 5 6 7
+[2025-02-10 17:15:56] [Action] -  -> Output file saved successfully.
+
+[2025-02-10 17:15:56] [Action] - Started detection for img6_0.png
+[2025-02-10 17:15:56] [Action] -  -> Detected markers: 0 1 2 3 4 5 6 7
+[2025-02-10 17:15:56] [Action] -  -> Output file saved successfully.
+
+[2025-02-10 17:15:56] [Action] - Started detection for img6_1.png
+[2025-02-10 17:15:56] [Action] -  -> Detected markers: 0 1 2 3 4 5 6 7
+[2025-02-10 17:15:56] [Action] -  -> Output file saved successfully.
+
+[2025-02-10 17:15:56] [Action] - Started detection for img7_0.png
+[2025-02-10 17:15:56] [Action] -  -> Detected markers: 0 1 2 3 4 5 6 7
+[2025-02-10 17:15:56] [Action] -  -> Output file saved successfully.
+
+[2025-02-10 17:15:56] [Action] - Started detection for img7_1.png
+[2025-02-10 17:15:57] [Action] -  -> Detected markers: 0 1 2 3 4 5 6 7
+[2025-02-10 17:15:57] [Action] -  -> Output file saved successfully.
+
+[2025-02-10 17:15:57] [Action] - Detection complete, writing data to file ...
+
+
+[2025-02-10 17:15:57] - ======== GENERATE OVERLAYS ========
+
+[2025-02-10 17:15:57] [Action] - Computing overlays ...
+
+[2025-02-10 17:15:59] - ======== COMPARISON STEP ========
+
+[2025-02-10 17:15:59] [Action] - Calculating variations ...
+
+[2025-02-10 17:16:10] [Action] - Calculation complete, writing data to file ...
+
+
