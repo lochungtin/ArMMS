@@ -1,4 +1,6 @@
-# Installation
+# ArUCo Marker Measurement System
+
+## Installation
 
 1. Create a python 3.11 virtual environment
 
@@ -21,13 +23,13 @@ python -m venv env
 pip install -r requirement.txt
 ```
 
-# Basic Usage
+## Basic Usage
 
-## Inference
+### Inference
 
 Run the `run.sh` to run the inference script with the provided test data. The output directory of the test should be in the `out` folder.
 
-### Flags
+#### Flags
 
 -   `-t` aruco marker type
 -   `-s` aruco marker size in any unit
@@ -38,6 +40,6 @@ Run the `run.sh` to run the inference script with the provided test data. The ou
 -   `-a` enable advanced thresholding
 -   `-d` do detection only
 
-# Analysis
+### Analysis
 
 To run the analysis script `analysis.sh`, first edit the analysis by changing the `JOB_ID` in the script to the name of the output folder of the inference script, it should be of the format "JOB_YYYY_MM_DD_HH_mm_ss".
