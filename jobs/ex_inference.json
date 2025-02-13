@@ -12,52 +12,50 @@
         4,
         5,
         6,
-        7,
-        8,
-        9
+        7
     ],
     "data": {
         "Position_0": {
             "Front": {
                 "Volunteer_0": [
-                    "data/sample/img0_0.png",
-                    "data/sample/img0_1.png"
+                    "data/img0/img0_0.png",
+                    "data/img0/img0_1.png"
                 ],
                 "Volunteer_1": [
-                    "data/sample/img1_0.png",
-                    "data/sample/img1_1.png"
+                    "data/img1/img1_0.png",
+                    "data/img1/img1_1.png"
                 ]
             },
             "Side": {
                 "Volunteer_0": [
-                    "data/sample/img2_0.png",
-                    "data/sample/img2_1.png"
+                    "data/img2/img2_0.png",
+                    "data/img2/img2_1.png"
                 ],
                 "Volunteer_1": [
-                    "data/sample/img3_0.png",
-                    "data/sample/img3_1.png"
+                    "data/img3/img3_0.png",
+                    "data/img3/img3_1.png"
                 ]
             }
         },
         "Position_1": {
             "Front": {
                 "Volunteer_0": [
-                    "data/sample/img4_0.png",
-                    "data/sample/img4_1.png"
+                    "data/img4/img4_0.png",
+                    "data/img4/img4_1.png"
                 ],
                 "Volunteer_1": [
-                    "data/sample/img5_0.png",
-                    "data/sample/img5_1.png"
+                    "data/img5/img5_0.png",
+                    "data/img5/img5_1.png"
                 ]
             },
             "Side": {
                 "Volunteer_0": [
-                    "data/sample/img6_0.png",
-                    "data/sample/img6_1.png"
+                    "data/img6/img6_0.png",
+                    "data/img6/img6_1.png"
                 ],
                 "Volunteer_1": [
-                    "data/sample/img7_0.png",
-                    "data/sample/img7_1.png"
+                    "data/img7/img7_0.png",
+                    "data/img7/img7_1.png"
                 ]
             }
         }
