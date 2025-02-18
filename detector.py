@@ -31,13 +31,13 @@ class Detector:
                 logger.action(f"Logger created: [{self.mType}] type selected")
         self.params = arc.DetectorParameters_create()
 
-    def detectMarkersFromFile(self, filename):
+    def detectMarkersFromFile(self, filename, verbose=False):
         if self.logger:
             text = f"Started detection for {Path(filename).name}"
-            self.logger.action(text, toConsole=0, noNewLine=1)
-        return self.detectMarkers(cv.imread(filename))
+            self.logger.action(text, toConsole=verbose, noNewLine=1)
+        return self.detectMarkers(cv.imread(filename), verbose)
 
-    def detectMarkers(self, image):
+    def detectMarkers(self, image, verbose=False):
         def detect(img):
             # get corners and ids
             corners, ids, _ = arc.detectMarkers(img, self.dict, parameters=self.params)
@@ -60,9 +60,7 @@ class Detector:
 
             if self.logger:
                 mStr = " ".join(list(map(lambda x: str(x[0]), ids)))
-                self.logger.action(
-                    f" -> Detected markers: {mStr}", toConsole=0, noNewLine=1
-                )
+                self.logger.action(f" -> Detected markers: {mStr}", toConsole=verbose)
 
             return ids, markers
 
@@ -98,6 +96,9 @@ class Detector:
             store[id] = c
 
         return output(store)
+
+    def drawMarkersFromFile(self, filename, ids, corners):
+        return self.drawMarkers(cv.imread(filename), ids, corners)
 
     def drawMarkers(self, image, ids, corners):
         # highlight markers

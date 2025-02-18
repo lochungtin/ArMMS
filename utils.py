@@ -57,7 +57,7 @@ def load(fn):
         return json.load(r)
 
 
-def save(obj, fn):
+def saveJSON(obj, fn):
     """Save dictionary as JSON file
 
     Args:
@@ -66,6 +66,12 @@ def save(obj, fn):
     """
     with open(fn, "w") as w:
         json.dump(obj, w)
+
+
+def saveCSV(header, rows, fn):
+    with open(fn, "w") as w:
+        for r in [header] + rows:
+            w.write(f"{', '.join(r)}\n")
 
 
 def dsc(i0, i1):
