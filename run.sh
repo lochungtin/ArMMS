@@ -6,10 +6,12 @@
 # -x generate overlaid images
 # -a enable advanced thresholding
 # -d do detection only
+# -v verbose output
 
 
 python inference.py \
-    -j jobs/ex_inference.json \
-    -o "out/"\
-    -g 1\
+    -r data/ \
+    -o out/ \
+    -i 0 1 2 3 4 5 6 7\
+    -g 1 \
     -x 1
