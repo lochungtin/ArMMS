@@ -49,6 +49,10 @@ Each subdirectory must have two or more images.
 
 Run the `run.sh` to run the inference script with the provided test data. The output directory of the test should be in the `out` folder.
 
+**OR**
+
+Open the `ipynb` notebook and run each cell, the inference process is identical.
+
 #### Flags
 
 -   `DICT_TYPE`: ArUCo marker dictionary
