@@ -7,8 +7,9 @@
 Using Conda
 
 ```bash
-
 conda create -n env python=3.11.5
+
+conda activate env
 ```
 
 Using Python VENV
