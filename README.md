@@ -18,7 +18,7 @@ Using Python VENV
 python -m venv env
 ```
 
-2. Install dependencies via the `requirement.txt`
+2. Change your terminal directory to the project directory and install the dependencies via the `requirement.txt`
 
 ```bash
 pip install -r requirement.txt
