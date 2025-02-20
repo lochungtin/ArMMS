@@ -67,22 +67,24 @@ def main():
     markers, _markers, imgs = {}, {}, []
     subDirs = natsorted(listdir(ROOT_DIR))
     for subDirName in subDirs if VERBOSE else tqdm(subDirs):
-        logger.action(f"Checking folder: {subDirName}", toConsole=VERBOSE)
-        folder = join(ROOT_DIR, subDirName)
-        fList = natsorted(listdir(folder))
+        if subDirName != ".DS_Store":
+            logger.action(f"Checking folder: {subDirName}", toConsole=VERBOSE)
+            folder = join(ROOT_DIR, subDirName)
+            fList = natsorted(listdir(folder))
 
-        if len(fList) < 2:
-            logger.warn(f"Skipping directory - directory has less than 2 images")
+            if len(fList) < 2:
+                logger.warn(f"Skipping directory - directory has less than 2 images")
 
-        markers[subDirName] = dict(zip(fList, [{}] * len(fList)))
-        _markers[subDirName] = dict(zip(fList, [{}] * len(fList)))
-        for fileName in fList:
-            imgs.append((subDirName, fileName))
+            markers[subDirName] = dict(zip(fList, [{}] * len(fList)))
+            _markers[subDirName] = dict(zip(fList, [{}] * len(fList)))
+            for fileName in fList:
+                if fileName != ".DS_Store":
+                    imgs.append((subDirName, fileName))
 
-        if GEN_RESULTS:
-            makedirs(join(OUT_DIR, "images", subDirName))
-            if GEN_OVERLAYS:
-                makedirs(join(OUT_DIR, "images", subDirName, "overlay"))
+            if GEN_RESULTS:
+                makedirs(join(OUT_DIR, "images", subDirName))
+                if GEN_OVERLAYS:
+                    makedirs(join(OUT_DIR, "images", subDirName, "overlay"))
 
     logger.plain("=== DETECTION ===")
     for subDirName, fileName in imgs if VERBOSE else tqdm(imgs):
@@ -147,19 +149,19 @@ def main():
         for grpName, grp in markers.items() if VERBOSE else tqdm(markers.items()):
             logger.action(f"Processing group: {grpName}", toConsole=VERBOSE, noNewLine=1)
             folder = join(OUT_DIR, "images", grpName)
-            imgs = [Image.open(join(folder, i)).convert("RGBA") for i in natsorted(grp.keys())]
+            imgFs = [Image.open(join(folder, i)).convert("RGBA") for i in natsorted(grp.keys())]
 
-            if len(imgs) == 1:
+            if len(imgFs) == 1:
                 logger.action(
                     " -> Directory only has 1 image, no overlays will be generated",
                     toConsole=VERBOSE,
                 )
             else:
-                output = Image.new("RGBA", imgs[0].size)
-                alpha = int(255 / len(imgs))
+                output = Image.new("RGBA", imgFs[0].size)
+                alpha = int(255 / len(imgFs))
 
-                for img in imgs:
-                    img.putalpha(Image.new("L", imgs[0].size, alpha))
+                for img in imgFs:
+                    img.putalpha(Image.new("L", imgFs[0].size, alpha))
                     output = Image.alpha_composite(output, img)
 
                 output.convert("RGB").save(join(folder, "overlay", "result.png"))

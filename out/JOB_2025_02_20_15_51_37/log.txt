@@ -1,0 +1,150 @@
+[2025-02-20 15:51:37] [Action] - Logger created: [DICT_4X4_100] type selected
+
+[2025-02-20 15:51:37] - === INITIALISATION: Verifying Subdirectories ===
+[2025-02-20 15:51:37] [Action] - Checking folder: img0
+
+[2025-02-20 15:51:37] [Action] - Checking folder: img1
+
+[2025-02-20 15:51:37] [Action] - Checking folder: img2
+
+[2025-02-20 15:51:37] [Action] - Checking folder: img3
+
+[2025-02-20 15:51:37] [Action] - Checking folder: img4
+
+[2025-02-20 15:51:37] [Action] - Checking folder: img5
+
+[2025-02-20 15:51:37] [Action] - Checking folder: img6
+
+[2025-02-20 15:51:37] [Action] - Checking folder: img7
+
+[2025-02-20 15:51:37] - === DETECTION ===
+[2025-02-20 15:51:37] [Action] - Started detection for img0_0.png
+[2025-02-20 15:51:37] [Action] -  -> Detected markers: 0 1 2 3 4 5 6 7
+
+[2025-02-20 15:51:37] [Action] -  -> Output file saved successfully.
+
+[2025-02-20 15:51:37] [Action] - Started detection for img0_1.png
+[2025-02-20 15:51:37] [Action] -  -> Detected markers: 0 1 2 3 4 5 6 7
+
+[2025-02-20 15:51:37] [Action] -  -> Output file saved successfully.
+
+[2025-02-20 15:51:37] [Action] - Started detection for img1_0.png
+[2025-02-20 15:51:37] [Action] -  -> Detected markers: 0 1 2 3 4 5 6 7
+
+[2025-02-20 15:51:37] [Action] -  -> Output file saved successfully.
+
+[2025-02-20 15:51:37] [Action] - Started detection for img1_1.png
+[2025-02-20 15:51:37] [Action] -  -> Detected markers: 0 1 2 3 4 5 6 7
+
+[2025-02-20 15:51:37] [Action] -  -> Output file saved successfully.
+
+[2025-02-20 15:51:37] [Action] - Started detection for img2_0.png
+[2025-02-20 15:51:37] [Action] -  -> Detected markers: 0 1 2 3 4 5 6 7
+
+[2025-02-20 15:51:37] [Action] -  -> Output file saved successfully.
+
+[2025-02-20 15:51:37] [Action] - Started detection for img2_1.png
+[2025-02-20 15:51:37] [Action] -  -> Detected markers: 0 1 2 3 4 5 6 7
+
+[2025-02-20 15:51:37] [Action] -  -> Output file saved successfully.
+
+[2025-02-20 15:51:37] [Action] - Started detection for img3_0.png
+[2025-02-20 15:51:37] [Action] -  -> Detected markers: 0 1 2 3 4 5 6 7
+
+[2025-02-20 15:51:37] [Action] -  -> Output file saved successfully.
+
+[2025-02-20 15:51:37] [Action] - Started detection for img3_1.png
+[2025-02-20 15:51:37] [Action] -  -> Detected markers: 0 1 2 3 4 5 6 7
+
+[2025-02-20 15:51:38] [Action] -  -> Output file saved successfully.
+
+[2025-02-20 15:51:38] [Action] - Started detection for img4_0.png
+[2025-02-20 15:51:38] [Action] -  -> Detected markers: 0 1 2 3 4 5 6 7
+
+[2025-02-20 15:51:38] [Action] -  -> Output file saved successfully.
+
+[2025-02-20 15:51:38] [Action] - Started detection for img4_1.png
+[2025-02-20 15:51:38] [Action] -  -> Detected markers: 0 1 2 3 4 5 6 7
+
+[2025-02-20 15:51:38] [Action] -  -> Output file saved successfully.
+
+[2025-02-20 15:51:38] [Action] - Started detection for img5_0.png
+[2025-02-20 15:51:38] [Action] -  -> Detected markers: 0 1 2 3 4 5 6 7
+
+[2025-02-20 15:51:38] [Action] -  -> Output file saved successfully.
+
+[2025-02-20 15:51:38] [Action] - Started detection for img5_1.png
+[2025-02-20 15:51:38] [Action] -  -> Detected markers: 0 1 2 3 4 5 6 7
+
+[2025-02-20 15:51:38] [Action] -  -> Output file saved successfully.
+
+[2025-02-20 15:51:38] [Action] - Started detection for img6_0.png
+[2025-02-20 15:51:38] [Action] -  -> Detected markers: 0 1 2 3 4 5 6 7
+
+[2025-02-20 15:51:38] [Action] -  -> Output file saved successfully.
+
+[2025-02-20 15:51:38] [Action] - Started detection for img6_1.png
+[2025-02-20 15:51:38] [Action] -  -> Detected markers: 0 1 2 3 4 5 6 7
+
+[2025-02-20 15:51:38] [Action] -  -> Output file saved successfully.
+
+[2025-02-20 15:51:38] [Action] - Started detection for img7_0.png
+[2025-02-20 15:51:38] [Action] -  -> Detected markers: 0 1 2 3 4 5 6 7
+
+[2025-02-20 15:51:38] [Action] -  -> Output file saved successfully.
+
+[2025-02-20 15:51:38] [Action] - Started detection for img7_1.png
+[2025-02-20 15:51:38] [Action] -  -> Detected markers: 0 1 2 3 4 5 6 7
+
+[2025-02-20 15:51:38] [Action] -  -> Output file saved successfully.
+
+[2025-02-20 15:51:38] - === CALCULATION AND COMPARISON ===
+[2025-02-20 15:51:38] [Action] - Processing group: img0
+[2025-02-20 15:51:38] [Action] - Matching pairs found: 0 1 2 3 4 5 6 7
+
+[2025-02-20 15:51:40] [Action] - Processing group: img1
+[2025-02-20 15:51:40] [Action] - Matching pairs found: 0 1 2 3 4 5 6 7
+
+[2025-02-20 15:51:41] [Action] - Processing group: img2
+[2025-02-20 15:51:41] [Action] - Matching pairs found: 0 1 2 3 4 5 6 7
+
+[2025-02-20 15:51:43] [Action] - Processing group: img3
+[2025-02-20 15:51:43] [Action] - Matching pairs found: 0 1 2 3 4 5 6 7
+
+[2025-02-20 15:51:44] [Action] - Processing group: img4
+[2025-02-20 15:51:44] [Action] - Matching pairs found: 0 1 2 3 4 5 6 7
+
+[2025-02-20 15:51:46] [Action] - Processing group: img5
+[2025-02-20 15:51:46] [Action] - Matching pairs found: 0 1 2 3 4 5 6 7
+
+[2025-02-20 15:51:47] [Action] - Processing group: img6
+[2025-02-20 15:51:47] [Action] - Matching pairs found: 0 1 2 3 4 5 6 7
+
+[2025-02-20 15:51:48] [Action] - Processing group: img7
+[2025-02-20 15:51:48] [Action] - Matching pairs found: 0 1 2 3 4 5 6 7
+
+[2025-02-20 15:51:50] - === COMPUTING OVERLAYS ===
+[2025-02-20 15:51:50] [Action] - Processing group: img0
+[2025-02-20 15:51:50] [Action] -  -> Overlay generated
+
+[2025-02-20 15:51:50] [Action] - Processing group: img1
+[2025-02-20 15:51:51] [Action] -  -> Overlay generated
+
+[2025-02-20 15:51:51] [Action] - Processing group: img2
+[2025-02-20 15:51:51] [Action] -  -> Overlay generated
+
+[2025-02-20 15:51:51] [Action] - Processing group: img3
+[2025-02-20 15:51:51] [Action] -  -> Overlay generated
+
+[2025-02-20 15:51:51] [Action] - Processing group: img4
+[2025-02-20 15:51:51] [Action] -  -> Overlay generated
+
+[2025-02-20 15:51:51] [Action] - Processing group: img5
+[2025-02-20 15:51:52] [Action] -  -> Overlay generated
+
+[2025-02-20 15:51:52] [Action] - Processing group: img6
+[2025-02-20 15:51:52] [Action] -  -> Overlay generated
+
+[2025-02-20 15:51:52] [Action] - Processing group: img7
+[2025-02-20 15:51:52] [Action] -  -> Overlay generated
+
