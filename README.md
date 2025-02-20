@@ -17,10 +17,10 @@ Using Python VENV
 python -m venv env
 ```
 
-2. Install dependencies via the `requirement.txt`
+2. Install dependencies via the `requirements.txt`
 
 ```bash
-pip install -r requirement.txt
+pip install -r requirements.txt
 ```
 
 ## Basic Usage
