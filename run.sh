@@ -10,8 +10,9 @@
 
 
 python inference.py \
-    -r data/ \
+    -r "/Volumes/PhD Data/Reproducibility Study/development_v1/Participant1Anon/" \
     -o out/ \
     -i 0 1 2 3 4 5 6 7\
     -g 1 \
-    -x 1
+    -x 1 \
+    -d 1
