@@ -3,13 +3,11 @@ from pathlib import Path
 import cv2 as cv
 import numpy as np
 from cv2 import aruco as arc
-from utils import loadAruCoDict
+from utils import loadArUcoDict
 
 
 class Detector:
-    def __init__(
-        self, markerType, advancedThresholding, markerFilter=None, logger=None
-    ):
+    def __init__(self, markerType, advancedThresholding, markerFilter=None, logger=None):
         self.mType = markerType
         self.advThres = advancedThresholding
         self.mFilter = markerFilter
@@ -19,7 +17,7 @@ class Detector:
             logger.warn("Advanced thresholding is enabled.")
 
         # load aruco marker dictionary
-        self.dict = loadAruCoDict(self.mType)
+        self.dict = loadArUcoDict(self.mType)
         if self.dict == None:
             if self.logger:
                 logger.error(f"ArUCo tag type {self.mType} is not a valid type.")
@@ -78,9 +76,7 @@ class Detector:
             for g in range(20, 2):
                 br = cv.addWeighted(image, a / 10, image, 0, float(g))
                 ad = cv.convertScaleAbs(image, alpha=a, beta=g)
-                mono = cv.cvtColor(
-                    cv.cvtColor(br, cv.COLOR_RGB2GRAY), cv.COLOR_GRAY2RGB
-                )
+                mono = cv.cvtColor(cv.cvtColor(br, cv.COLOR_RGB2GRAY), cv.COLOR_GRAY2RGB)
                 for alt in [br, ad, mono]:
                     for id, c in zip(*detect(alt)):
                         store[id] = c

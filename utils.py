@@ -30,40 +30,18 @@ ARUCO_DICT = {
 CORNER2EDGE_MAP = [[0, 1], [1, 2], [2, 3], [3, 0]]
 
 
-def loadAruCoDict(mType):
-    """Load OpenCV AruCo Marker Dictionary
-
-    Args:
-        mType (str): Name of marker type
-
-    Returns:
-        Dict: Marker dictionar
-    """
+def loadArUcoDict(mType):
     if mType in ARUCO_DICT:
         return arc.getPredefinedDictionary(ARUCO_DICT[mType])
     return None
 
 
 def load(fn):
-    """Load JSON file data
-
-    Args:
-        fn (str): Filename
-
-    Returns:
-        dict[any, any]: Data dictionary
-    """
     with open(fn, "r") as r:
         return json.load(r)
 
 
 def saveJSON(obj, fn):
-    """Save dictionary as JSON file
-
-    Args:
-        obj (dict[any, any]): Data dictionary
-        fn (filename): Filename
-    """
     with open(fn, "w") as w:
         json.dump(obj, w)
 
@@ -75,30 +53,12 @@ def saveCSV(header, rows, fn):
 
 
 def dsc(i0, i1):
-    """Calculate Dice Score between 2 images
-
-    Args:
-        i0 (NDArray): Image 0
-        i1 (NDArray): Image 1
-
-    Returns:
-        float: Dice score
-    """
     i0 = (i0 == 255).astype(int)
     i1 = (i1 == 255).astype(int)
     return np.sum(i1[i0 == 1]) * 2.0 / (np.sum(i0) + np.sum(i1))
 
 
 def angDist(R0, R1):
-    """Calculate angular distance between 2 rotation matrices
-
-    Args:
-        R0 (NDArray): Rotation matrix 1
-        R1 (NDArray): Rotation matrix 2
-
-    Returns:
-        float: Angular Ddistance in degrees
-    """
     relR = np.dot(R0.T, R1)
     traceR = np.trace(relR)
     ang = np.clip((traceR - 1) / 2, -1.0, 1.0)
@@ -106,12 +66,4 @@ def angDist(R0, R1):
 
 
 def toHex(n):
-    """Converts decimal 0 - 15 to hex 0 - f
-
-    Args:
-        n (int): Number
-
-    Returns:
-        str: Hex string
-    """
     return str(hex(n))[-1]
