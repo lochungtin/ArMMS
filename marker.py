@@ -62,7 +62,7 @@ class Marker:
         base = np.zeros((size, size, 3))
         return cv.fillPoly(base, pts=[self.normalised + radius], color=(255, 255, 255))
 
-    def recoverEdgeLength(self):
+    def edgeLength(self):
         if self.edgeL == None:
 
             def step(a, b):
@@ -85,7 +85,7 @@ class Marker:
     def recoverMatrix(self):
         if self.rMat == None:
 
-            self.recoverEdgeLength()
+            self.edgeLength()
             lp, ln = self.edgeL // 2, -self.edgeL // 2
             A = [
                 [ln, ln, 0, 0],

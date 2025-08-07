@@ -1,0 +1,98 @@
+[2025-08-07 17:33:12] [Action] - Logger created: [DICT_4X4_100] type selected
+
+[2025-08-07 17:33:12] - === INITIALISATION: Verifying Subdirectories ===
+[2025-08-07 17:33:12] [Action] - Checking folder: grp0
+
+[2025-08-07 17:33:12] [Action] - Checking folder: grp1
+
+[2025-08-07 17:33:12] - === DETECTION ===
+[2025-08-07 17:33:12] [Action] - Started detection for 0.png
+[2025-08-07 17:33:12] [Action] -  -> Detected markers: 7 6 5 4 3 2 1 0
+
+[2025-08-07 17:33:12] [Action] -  -> Output file saved successfully.
+
+[2025-08-07 17:33:12] [Action] - Started detection for 1.png
+[2025-08-07 17:33:12] [Action] -  -> Detected markers: 7 6 5 4 3 2 1 0
+
+[2025-08-07 17:33:12] [Action] -  -> Output file saved successfully.
+
+[2025-08-07 17:33:12] [Action] - Started detection for 2.png
+[2025-08-07 17:33:12] [Action] -  -> Detected markers: 7 6 5 4 3 2 1 0
+
+[2025-08-07 17:33:12] [Action] -  -> Output file saved successfully.
+
+[2025-08-07 17:33:12] [Action] - Started detection for 3.png
+[2025-08-07 17:33:12] [Action] -  -> Detected markers: 7 6 5 4 3 2 1 0
+
+[2025-08-07 17:33:13] [Action] -  -> Output file saved successfully.
+
+[2025-08-07 17:33:13] [Action] - Started detection for 4.png
+[2025-08-07 17:33:13] [Action] -  -> Detected markers: 7 6 5 4 3 2 1 0
+
+[2025-08-07 17:33:13] [Action] -  -> Output file saved successfully.
+
+[2025-08-07 17:33:13] [Action] - Started detection for 5.png
+[2025-08-07 17:33:13] [Action] -  -> Detected markers: 7 6 5 4 3 2 1 0
+
+[2025-08-07 17:33:13] [Action] -  -> Output file saved successfully.
+
+[2025-08-07 17:33:13] [Action] - Started detection for 6.png
+[2025-08-07 17:33:13] [Action] -  -> Detected markers: 7 6 5 4 3 2 1 0
+
+[2025-08-07 17:33:13] [Action] -  -> Output file saved successfully.
+
+[2025-08-07 17:33:13] [Action] - Started detection for 7.png
+[2025-08-07 17:33:13] [Action] -  -> Detected markers: 7 6 5 4 3 2 1 0
+
+[2025-08-07 17:33:13] [Action] -  -> Output file saved successfully.
+
+[2025-08-07 17:33:13] [Action] - Started detection for 0.png
+[2025-08-07 17:33:13] [Action] -  -> Detected markers: 7 6 5 4 3 2 1 0
+
+[2025-08-07 17:33:13] [Action] -  -> Output file saved successfully.
+
+[2025-08-07 17:33:13] [Action] - Started detection for 1.png
+[2025-08-07 17:33:13] [Action] -  -> Detected markers: 7 6 5 4 3 2 1 0
+
+[2025-08-07 17:33:13] [Action] -  -> Output file saved successfully.
+
+[2025-08-07 17:33:13] [Action] - Started detection for 2.png
+[2025-08-07 17:33:13] [Action] -  -> Detected markers: 7 6 5 4 3 2 1 0
+
+[2025-08-07 17:33:13] [Action] -  -> Output file saved successfully.
+
+[2025-08-07 17:33:13] [Action] - Started detection for 3.png
+[2025-08-07 17:33:13] [Action] -  -> Detected markers: 7 6 5 4 3 2 1 0
+
+[2025-08-07 17:33:13] [Action] -  -> Output file saved successfully.
+
+[2025-08-07 17:33:13] [Action] - Started detection for 4.png
+[2025-08-07 17:33:13] [Action] -  -> Detected markers: 7 6 5 4 3 2 1 0
+
+[2025-08-07 17:33:13] [Action] -  -> Output file saved successfully.
+
+[2025-08-07 17:33:13] [Action] - Started detection for 5.png
+[2025-08-07 17:33:13] [Action] -  -> Detected markers: 7 6 5 4 3 2 1 0
+
+[2025-08-07 17:33:13] [Action] -  -> Output file saved successfully.
+
+[2025-08-07 17:33:13] [Action] - Started detection for 6.png
+[2025-08-07 17:33:13] [Action] -  -> Detected markers: 7 6 5 4 3 2 1 0
+
+[2025-08-07 17:33:13] [Action] -  -> Output file saved successfully.
+
+[2025-08-07 17:33:13] [Action] - Started detection for 7.png
+[2025-08-07 17:33:13] [Action] -  -> Detected markers: 7 6 5 4 3 2 1 0
+
+[2025-08-07 17:33:13] [Action] -  -> Output file saved successfully.
+
+[2025-08-07 17:33:13] - === CALCULATION AND COMPARISON ===
+[2025-08-07 17:33:13] [Action] - Processing group: grp0
+[2025-08-07 17:33:13] [Action] - Processing group: grp1
+[2025-08-07 17:33:13] - === COMPUTING OVERLAYS ===
+[2025-08-07 17:33:13] [Action] - Processing group: grp0
+[2025-08-07 17:33:14] [Action] -  -> Overlay generated
+
+[2025-08-07 17:33:14] [Action] - Processing group: grp1
+[2025-08-07 17:33:15] [Action] -  -> Overlay generated
+

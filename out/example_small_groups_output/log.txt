@@ -1,0 +1,150 @@
+[2025-08-07 17:33:51] [Action] - Logger created: [DICT_4X4_100] type selected
+
+[2025-08-07 17:33:51] - === INITIALISATION: Verifying Subdirectories ===
+[2025-08-07 17:33:51] [Action] - Checking folder: grp0
+
+[2025-08-07 17:33:51] [Action] - Checking folder: grp1
+
+[2025-08-07 17:33:51] [Action] - Checking folder: grp2
+
+[2025-08-07 17:33:51] [Action] - Checking folder: grp3
+
+[2025-08-07 17:33:51] [Action] - Checking folder: grp4
+
+[2025-08-07 17:33:51] [Action] - Checking folder: grp5
+
+[2025-08-07 17:33:51] [Action] - Checking folder: grp6
+
+[2025-08-07 17:33:51] [Action] - Checking folder: grp7
+
+[2025-08-07 17:33:51] - === DETECTION ===
+[2025-08-07 17:33:51] [Action] - Started detection for 0.png
+[2025-08-07 17:33:51] [Action] -  -> Detected markers: 7 6 5 4 3 2 1 0
+
+[2025-08-07 17:33:51] [Action] -  -> Output file saved successfully.
+
+[2025-08-07 17:33:51] [Action] - Started detection for 1.png
+[2025-08-07 17:33:51] [Action] -  -> Detected markers: 7 6 5 4 3 2 1 0
+
+[2025-08-07 17:33:51] [Action] -  -> Output file saved successfully.
+
+[2025-08-07 17:33:51] [Action] - Started detection for 0.png
+[2025-08-07 17:33:52] [Action] -  -> Detected markers: 7 6 5 4 3 2 1 0
+
+[2025-08-07 17:33:52] [Action] -  -> Output file saved successfully.
+
+[2025-08-07 17:33:52] [Action] - Started detection for 1.png
+[2025-08-07 17:33:52] [Action] -  -> Detected markers: 7 6 5 4 3 2 1 0
+
+[2025-08-07 17:33:52] [Action] -  -> Output file saved successfully.
+
+[2025-08-07 17:33:52] [Action] - Started detection for 0.png
+[2025-08-07 17:33:52] [Action] -  -> Detected markers: 7 6 5 4 3 2 1 0
+
+[2025-08-07 17:33:52] [Action] -  -> Output file saved successfully.
+
+[2025-08-07 17:33:52] [Action] - Started detection for 1.png
+[2025-08-07 17:33:52] [Action] -  -> Detected markers: 7 6 5 4 3 2 1 0
+
+[2025-08-07 17:33:52] [Action] -  -> Output file saved successfully.
+
+[2025-08-07 17:33:52] [Action] - Started detection for 0.png
+[2025-08-07 17:33:52] [Action] -  -> Detected markers: 7 6 5 4 3 2 1 0
+
+[2025-08-07 17:33:52] [Action] -  -> Output file saved successfully.
+
+[2025-08-07 17:33:52] [Action] - Started detection for 1.png
+[2025-08-07 17:33:52] [Action] -  -> Detected markers: 7 6 5 4 3 2 1 0
+
+[2025-08-07 17:33:52] [Action] -  -> Output file saved successfully.
+
+[2025-08-07 17:33:52] [Action] - Started detection for 0.png
+[2025-08-07 17:33:52] [Action] -  -> Detected markers: 7 6 5 4 3 2 1 0
+
+[2025-08-07 17:33:52] [Action] -  -> Output file saved successfully.
+
+[2025-08-07 17:33:52] [Action] - Started detection for 1.png
+[2025-08-07 17:33:52] [Action] -  -> Detected markers: 7 6 5 4 3 2 1 0
+
+[2025-08-07 17:33:52] [Action] -  -> Output file saved successfully.
+
+[2025-08-07 17:33:52] [Action] - Started detection for 0.png
+[2025-08-07 17:33:52] [Action] -  -> Detected markers: 7 6 5 4 3 2 1 0
+
+[2025-08-07 17:33:52] [Action] -  -> Output file saved successfully.
+
+[2025-08-07 17:33:52] [Action] - Started detection for 1.png
+[2025-08-07 17:33:52] [Action] -  -> Detected markers: 7 6 5 4 3 2 1 0
+
+[2025-08-07 17:33:52] [Action] -  -> Output file saved successfully.
+
+[2025-08-07 17:33:52] [Action] - Started detection for 0.png
+[2025-08-07 17:33:52] [Action] -  -> Detected markers: 7 6 5 4 3 2 1 0
+
+[2025-08-07 17:33:52] [Action] -  -> Output file saved successfully.
+
+[2025-08-07 17:33:52] [Action] - Started detection for 1.png
+[2025-08-07 17:33:52] [Action] -  -> Detected markers: 7 6 5 4 3 2 1 0
+
+[2025-08-07 17:33:52] [Action] -  -> Output file saved successfully.
+
+[2025-08-07 17:33:52] [Action] - Started detection for 0.png
+[2025-08-07 17:33:52] [Action] -  -> Detected markers: 7 6 5 4 3 2 1 0
+
+[2025-08-07 17:33:52] [Action] -  -> Output file saved successfully.
+
+[2025-08-07 17:33:52] [Action] - Started detection for 1.png
+[2025-08-07 17:33:53] [Action] -  -> Detected markers: 7 6 5 4 3 2 1 0
+
+[2025-08-07 17:33:53] [Action] -  -> Output file saved successfully.
+
+[2025-08-07 17:33:53] - === CALCULATION AND COMPARISON ===
+[2025-08-07 17:33:53] [Action] - Processing group: grp0
+[2025-08-07 17:33:53] [Action] - Matching pairs found: 0 1 2 3 4 5 6 7
+
+[2025-08-07 17:33:53] [Action] - Processing group: grp1
+[2025-08-07 17:33:53] [Action] - Matching pairs found: 0 1 2 3 4 5 6 7
+
+[2025-08-07 17:33:53] [Action] - Processing group: grp2
+[2025-08-07 17:33:53] [Action] - Matching pairs found: 0 1 2 3 4 5 6 7
+
+[2025-08-07 17:33:53] [Action] - Processing group: grp3
+[2025-08-07 17:33:53] [Action] - Matching pairs found: 0 1 2 3 4 5 6 7
+
+[2025-08-07 17:33:53] [Action] - Processing group: grp4
+[2025-08-07 17:33:53] [Action] - Matching pairs found: 0 1 2 3 4 5 6 7
+
+[2025-08-07 17:33:53] [Action] - Processing group: grp5
+[2025-08-07 17:33:53] [Action] - Matching pairs found: 0 1 2 3 4 5 6 7
+
+[2025-08-07 17:33:53] [Action] - Processing group: grp6
+[2025-08-07 17:33:53] [Action] - Matching pairs found: 0 1 2 3 4 5 6 7
+
+[2025-08-07 17:33:53] [Action] - Processing group: grp7
+[2025-08-07 17:33:53] [Action] - Matching pairs found: 0 1 2 3 4 5 6 7
+
+[2025-08-07 17:33:53] - === COMPUTING OVERLAYS ===
+[2025-08-07 17:33:53] [Action] - Processing group: grp0
+[2025-08-07 17:33:53] [Action] -  -> Overlay generated
+
+[2025-08-07 17:33:53] [Action] - Processing group: grp1
+[2025-08-07 17:33:53] [Action] -  -> Overlay generated
+
+[2025-08-07 17:33:53] [Action] - Processing group: grp2
+[2025-08-07 17:33:54] [Action] -  -> Overlay generated
+
+[2025-08-07 17:33:54] [Action] - Processing group: grp3
+[2025-08-07 17:33:54] [Action] -  -> Overlay generated
+
+[2025-08-07 17:33:54] [Action] - Processing group: grp4
+[2025-08-07 17:33:54] [Action] -  -> Overlay generated
+
+[2025-08-07 17:33:54] [Action] - Processing group: grp5
+[2025-08-07 17:33:55] [Action] -  -> Overlay generated
+
+[2025-08-07 17:33:55] [Action] - Processing group: grp6
+[2025-08-07 17:33:55] [Action] -  -> Overlay generated
+
+[2025-08-07 17:33:55] [Action] - Processing group: grp7
+[2025-08-07 17:33:55] [Action] -  -> Overlay generated
+

@@ -1,3 +1,4 @@
+import json
 from argparse import ArgumentParser
 from itertools import combinations as comb
 from os import listdir, makedirs
@@ -12,7 +13,6 @@ from tqdm import tqdm
 from detector import Detector
 from logger import Logger, _timestamp
 from marker import Marker
-from utils import saveCSV, saveJSON
 
 MARKER_CSV_HEAD = [
     "group",
@@ -30,23 +30,33 @@ MARKER_CSV_HEAD = [
 RESULTS_CSV_HEAD = ["group", "marker_id", "image0", "image1", "dx", "dy", "d"]
 
 
+def saveJSON(obj, fn):
+    with open(fn, "w") as w:
+        json.dump(obj, w)
+
+
+def saveCSV(header, rows, fn):
+    with open(fn, "w") as w:
+        for r in [header] + rows:
+            w.write(f"{', '.join(r)}\n")
+
+
 def getArgs():
     ap = ArgumentParser()
-    ap.add_argument(
-        "-t", "--type", type=str, default="DICT_4X4_100"
-    )  # aruco marker type
-    ap.add_argument(
-        "-s", "--size", type=float, default=3
-    )  # aruco marker size in any unit
+    ap.add_argument("-t", "--type", type=str, default="DICT_4X4_100")  # marker type
+    ap.add_argument("-s", "--size", type=float, default=3)  # marker size in any unit
     ap.add_argument("-i", "--ids", nargs="+", default=[])  # valid arcuo marker ids
+
     ap.add_argument("-r", "--root", type=str, default="data/")  # image list json file
     ap.add_argument("-o", "--output", type=str, default="out/")  # output directory
+
+    ap.add_argument("-d", "--detection", type=int, default=0)  # do detection only
+    ap.add_argument("-a", "--advanced", type=int, default=0)  # additional thresholding
+
+    ap.add_argument("-m", "--mode", type=str, default="all")  # comparison mode
+
     ap.add_argument("-g", "--generate", type=int, default=1)  # generate result images
     ap.add_argument("-x", "--overlay", type=int, default=1)  # generate overlaid images
-    ap.add_argument(
-        "-a", "--advanced", type=int, default=0
-    )  # enable advanced thresholding
-    ap.add_argument("-d", "--detection", type=int, default=0)  # do detection only
     ap.add_argument("-v", "--verbose", type=int, default=1)  # do command line output
     args = vars(ap.parse_args())
     return tuple(args[x] for x in args.keys())
@@ -60,10 +70,11 @@ class App:
         VALID_MARKER_IDS,
         ROOT_DIR,
         OUT_DIR,
+        DETECTION_ONLY,
+        USE_ADV_THRESH,
+        COMP_MODE,
         GEN_RESULTS,
         GEN_OVERLAYS,
-        USE_ADV_THRESH,
-        DETECTION_ONLY,
         VERBOSE,
     ):
         self.DICT_TYPE = DICT_TYPE
@@ -71,13 +82,14 @@ class App:
         self.VALID_MARKER_IDS = list(map(int, VALID_MARKER_IDS))
         self.ROOT_DIR = ROOT_DIR
         self.OUT_DIR = join(OUT_DIR, f"JOB_{_timestamp(True)}")
+        self.DETECTION_ONLY = DETECTION_ONLY
+        self.USE_ADV_THRESH = USE_ADV_THRESH
+        self.COMP_MODE = COMP_MODE
         self.GEN_RESULTS = GEN_RESULTS
         self.GEN_OVERLAYS = GEN_OVERLAYS
-        self.USE_ADV_THRESH = USE_ADV_THRESH
-        self.DETECTION_ONLY = DETECTION_ONLY
         self.VERBOSE = VERBOSE
 
-        makedirs(self.OUT_DIR)
+        makedirs(self.OUT_DIR, exist_ok=True)
 
         self.logger = Logger(self.OUT_DIR)
         self.detector = Detector(
@@ -140,7 +152,7 @@ class App:
             m = [x[0].tolist() for x in m]
             self.markers[subDirName][fileName] = dict(zip(i, m))
             _m = list(map(Marker, m))
-            [__m.recoverEdgeLength() for __m in _m]
+            [__m.edgeLength() for __m in _m]
             self._markers[subDirName][fileName] = dict(zip(i, _m))
 
         saveJSON(self.markers, join(self.OUT_DIR, "markers.json"))
@@ -158,7 +170,7 @@ class App:
                     )
         saveCSV(MARKER_CSV_HEAD, rows, join(self.OUT_DIR, "markers.csv"))
 
-    def comparison(self):
+    def comparison_all(self):
         self.logger.plain("=== CALCULATION AND COMPARISON ===")
         for grpName, grp in self.makeIter(self._markers.items()):
             self.results[grpName] = {}
@@ -176,16 +188,14 @@ class App:
                 for mID in markers:
                     m0, m1 = grp[i0][mID], grp[i1][mID]
                     [x, y], d = m0 - m1
-                    r = self.MARKER_SIZE / (
-                        (m0.recoverEdgeLength() + m1.recoverEdgeLength()) / 2
-                    )
+                    r = self.MARKER_SIZE / ((m0.edgeLength() + m1.edgeLength()) / 2)
                     if mID not in self.results[grpName]:
                         if mID not in self.results[grpName]:
                             self.results[grpName][mID] = {}
                         self.results[grpName][mID][pair] = {
+                            "d": r * d,
                             "dx": r * x,
                             "dy": r * y,
-                            "d": r * d,
                         }
 
         saveJSON(self.results, join(self.OUT_DIR, "results.json"))
@@ -206,6 +216,39 @@ class App:
                         ]
                     )
         saveCSV(RESULTS_CSV_HEAD, rows, join(self.OUT_DIR, "results.csv"))
+
+    def comparison_series(self):
+        self.logger.plain("=== CALCULATION AND COMPARISON ===")
+        for grpName, grp in self.makeIter(self._markers.items()):
+            markers = set(
+                np.array([list(markers.keys()) for markers in grp.values()]).flatten()
+            )
+
+        for grpName, grp in self.makeIter(self._markers.items()):
+            self.results[grpName] = {}
+            self.logger.action(
+                f"Processing group: {grpName}", toConsole=self.VERBOSE, noNewLine=1
+            )
+
+            imgs = sorted(grp.keys())
+            ref = imgs[0]
+            for img in imgs[1:]:
+                for mID in sorted(list(markers)):
+                    if mID not in self.results[grpName]:
+                        self.results[grpName][mID] = []
+                    m0, m1 = grp[ref].get(mID, -1), grp[img].get(mID, -1)
+                    if m0 == -1 or m1 == -1:
+                        self.results[grpName][mID].append([np.Nan, np.Nan, np.Nan])
+                    else:
+                        [dx, dy], d = m0 - m1
+                        r = self.MARKER_SIZE / (m0.edgeLength() + m1.edgeLength()) / 2
+                        self.results[grpName][mID].append([r * d, r * dx, r * dy])
+        saveJSON(self.results, join(self.OUT_DIR, "results.json"))
+        for grpName, serieses in self.results.items():
+            folder = join(self.OUT_DIR, "series", grpName)
+            makedirs(folder, exist_ok=True)
+            for mID, series in serieses.items():
+                np.save(join(folder, f"marker_{mID}.npy"), np.array(series))
 
     def overlays(self):
         self.logger.plain("=== COMPUTING OVERLAYS ===")
@@ -263,7 +306,10 @@ class App:
         self.prepDir()
         self.detection()
         if not self.DETECTION_ONLY:
-            self.comparison()
+            if self.COMP_MODE != "series":
+                self.comparison_all()
+            else:
+                self.comparison_series()
         if self.GEN_RESULTS and self.GEN_OVERLAYS:
             self.overlays()
         self.logger.close()
