@@ -177,7 +177,6 @@ class App:
             self.logger.action(
                 f"Processing group: {grpName}", toConsole=self.VERBOSE, noNewLine=1
             )
-            print(sorted(grp.keys()))
             for i0, i1 in comb(grp.keys(), 2):
                 pair = f"{i0}/{i1}"
                 s0, s1 = set(grp[i0].keys()), set(grp[i1].keys())
