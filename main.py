@@ -219,17 +219,17 @@ class App:
     def comparison_series(self):
         self.logger.plain("=== CALCULATION AND COMPARISON ===")
         for grpName, grp in self.makeIter(self._markers.items()):
-            markers = set(
-                np.array([list(markers.keys()) for markers in grp.values()]).flatten()
-            )
-
-        for grpName, grp in self.makeIter(self._markers.items()):
             self.results[grpName] = {}
             self.logger.action(
                 f"Processing group: {grpName}", toConsole=self.VERBOSE, noNewLine=1
             )
 
-            imgs = sorted(grp.keys())
+            markers = set()
+            for _markers in grp.values():
+                for mID in _markers.keys():
+                    markers.add(mID)
+
+            imgs = natsorted(grp.keys())
             ref = imgs[0]
             for img in imgs[1:]:
                 for mID in sorted(list(markers)):
@@ -237,7 +237,7 @@ class App:
                         self.results[grpName][mID] = []
                     m0, m1 = grp[ref].get(mID, -1), grp[img].get(mID, -1)
                     if m0 == -1 or m1 == -1:
-                        self.results[grpName][mID].append([np.Nan, np.Nan, np.Nan])
+                        self.results[grpName][mID].append([np.NaN, np.NaN, np.NaN])
                     else:
                         [dx, dy], d = m0 - m1
                         r = self.MARKER_SIZE / (m0.edgeLength() + m1.edgeLength()) / 2
