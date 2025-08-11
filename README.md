@@ -59,11 +59,12 @@ Open the `ipynb` notebook and run each cell, the inference process is identical.
 -   `MARKER_SIZE`: Marker size (can be in any unit)
 -   `VALID_MARKER_IDS`: Detection will only match the IDs provided below, leave the list empty if you want possible markers to be detected, highly advised to be used if `USE_ADV_THRESH` is enabled
 -   `ROOT_DIR`: Root directory of the images, see below for file structure
--   `OUT_DIR`: Output directory for the results, log file, and generated images
+-   `OUT_DIR`: Output directory for the results, log file, and generated images, **however, the output directory can't be inside the `ROOT_DIR`**
+-   `DETECTION_ONLY`: Boolean flag for disabling comparison and calculations
+-   `USE_ADV_THRESH`: Boolean flag for enabling advanced thresholding. Sweeps for a multitude of thresholding settings, aids in detecting markers that are less visible
+-   `COMPARISON_MODE`: Comparison mode, "all" or "series"
 -   `GEN_RESULTS`: Boolean flag for generating result images
 -   `GEN_OVERLAYS`: Boolean flag for generating an overlaid result of all the result images of the subdirectory
--   `USE_ADV_THRESH`: Boolean flag for enabling advanced thresholding. Sweeps for a multitude of thresholding settings, aids in detecting markers that are less visible.
--   `DETECTION_ONLY`: Boolean flag for disabling comparison and calculations
 -   `VERBOSE`: Boolean flag for enabling command line output
 
 ### Inference Script Process Breakdown
