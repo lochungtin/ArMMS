@@ -6,13 +6,12 @@ from os.path import join
 
 import cv2 as cv
 import numpy as np
-from natsort import natsorted
-from PIL import Image
-from tqdm import tqdm
-
 from detector import Detector
 from logger import Logger, _timestamp
 from marker import Marker
+from natsort import natsorted
+from PIL import Image
+from tqdm import tqdm
 
 MARKER_CSV_HEAD = [
     "group",
@@ -106,16 +105,12 @@ class App:
         subDirs = natsorted(listdir(self.ROOT_DIR))
         for subDirName in subDirs if self.VERBOSE else tqdm(subDirs):
             if not subDirName.startswith("."):
-                self.logger.action(
-                    f"Checking folder: {subDirName}", toConsole=self.VERBOSE
-                )
+                self.logger.action(f"Checking folder: {subDirName}", toConsole=self.VERBOSE)
                 folder = join(self.ROOT_DIR, subDirName)
                 fList = natsorted(listdir(folder))
 
                 if len(fList) < 2:
-                    self.logger.warn(
-                        f"Skipping directory - directory has less than 2 images"
-                    )
+                    self.logger.warn(f"Skipping directory - directory has less than 2 images")
 
                 self.markers[subDirName] = dict(zip(fList, [{}] * len(fList)))
                 self._markers[subDirName] = dict(zip(fList, [{}] * len(fList)))
@@ -139,9 +134,7 @@ class App:
 
             if self.GEN_RESULTS:
                 res = self.detector.drawMarkersFromFile(img, i, m)
-                sOut = cv.imwrite(
-                    join(self.OUT_DIR, "images", subDirName, fileName), res
-                )
+                sOut = cv.imwrite(join(self.OUT_DIR, "images", subDirName, fileName), res)
                 logOut = f" -> Output file {'saved successfully' if sOut else 'failed to save'}."
                 self.logger.action(logOut, toConsole=self.VERBOSE)
 
@@ -174,9 +167,7 @@ class App:
         self.logger.plain("=== CALCULATION AND COMPARISON ===")
         for grpName, grp in self.makeIter(self._markers.items()):
             self.results[grpName] = {}
-            self.logger.action(
-                f"Processing group: {grpName}", toConsole=self.VERBOSE, noNewLine=1
-            )
+            self.logger.action(f"Processing group: {grpName}", toConsole=self.VERBOSE, noNewLine=1)
             for i0, i1 in comb(grp.keys(), 2):
                 pair = f"{i0}/{i1}"
                 s0, s1 = set(grp[i0].keys()), set(grp[i1].keys())
@@ -220,9 +211,7 @@ class App:
         self.logger.plain("=== CALCULATION AND COMPARISON ===")
         for grpName, grp in self.makeIter(self._markers.items()):
             self.results[grpName] = {}
-            self.logger.action(
-                f"Processing group: {grpName}", toConsole=self.VERBOSE, noNewLine=1
-            )
+            self.logger.action(f"Processing group: {grpName}", toConsole=self.VERBOSE, noNewLine=1)
 
             markers = set()
             for _markers in grp.values():
@@ -252,9 +241,7 @@ class App:
     def overlays(self):
         self.logger.plain("=== COMPUTING OVERLAYS ===")
         for grpName, grp in self.makeIter(self.markers.items()):
-            self.logger.action(
-                f"Processing group: {grpName}", toConsole=self.VERBOSE, noNewLine=1
-            )
+            self.logger.action(f"Processing group: {grpName}", toConsole=self.VERBOSE, noNewLine=1)
             folder = join(self.OUT_DIR, "images", grpName)
             og = join(self.ROOT_DIR, grpName)
             imgFs = [

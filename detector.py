@@ -4,6 +4,7 @@ import cv2 as cv
 import cv2.aruco as arc
 import numpy as np
 
+# Marker type to string dictionary, for command parameters
 ARUCO_DICT = {
     "DICT_4X4_50": arc.DICT_4X4_50,
     "DICT_4X4_100": arc.DICT_4X4_100,
@@ -30,9 +31,7 @@ ARUCO_DICT = {
 
 
 class Detector:
-    def __init__(
-        self, markerType, advancedThresholding, markerFilter=None, logger=None
-    ):
+    def __init__(self, markerType, advancedThresholding, markerFilter=None, logger=None):
         self.mType = markerType
         self.advThres = advancedThresholding
         self.mFilter = markerFilter
@@ -63,16 +62,18 @@ class Detector:
 
     def detectMarkers(self, image, verbose=False):
         def detect(img):
-            # get corners and ids
+            # get corners and ids of an image
             corners, ids, _ = arc.detectMarkers(img, self.dict, parameters=self.params)
 
             if len(corners) == 0:
                 return [], []
 
-            # filter out unwanted detections
+            # pair up ids and corners into tuples
             pairs = [(i[0], c) for i, c in zip(ids, corners)]
+            pairs.sort(key=lambda x: x[0])
+
+            # filter out unwanted detections
             if self.mFilter:
-                pairs.sort(key=lambda x: x[0])
                 return zip(*list(filter(lambda x: x[0] in self.mFilter, pairs)))
 
             return zip(*pairs)
@@ -94,17 +95,15 @@ class Detector:
             store[id] = c
 
         if not self.advThres:
-            # if len(store) == 8:  # for validation only, uncomment line above to use
+            # if len(store) == 8:  # for validation only, uncomment line to use
             return output(store)
 
-        # advanced thresholding with varying brightness and contrast
+        # advanced thresholding by varying brightness and contrast of the original image
         for a in range(10, 40, 2):
             for g in range(20, 2):
                 br = cv.addWeighted(image, a / 10, image, 0, float(g))
                 ad = cv.convertScaleAbs(image, alpha=a, beta=g)
-                mono = cv.cvtColor(
-                    cv.cvtColor(br, cv.COLOR_RGB2GRAY), cv.COLOR_GRAY2RGB
-                )
+                mono = cv.cvtColor(cv.cvtColor(br, cv.COLOR_RGB2GRAY), cv.COLOR_GRAY2RGB)
                 for alt in [br, ad, mono]:
                     for id, c in zip(*detect(alt)):
                         store[id] = c
