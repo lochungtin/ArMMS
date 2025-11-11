@@ -226,7 +226,7 @@ class App:
                         self.results[grpName][mID] = []
                     m0, m1 = grp[ref].get(mID, -1), grp[img].get(mID, -1)
                     if m0 == -1 or m1 == -1:
-                        self.results[grpName][mID].append([np.NaN, np.NaN, np.NaN])
+                        self.results[grpName][mID].append([np.nan, np.nan, np.nan])
                     else:
                         [dx, dy], d = m0 - m1
                         r = self.MARKER_SIZE / (m0.edgeLength() + m1.edgeLength()) / 2
