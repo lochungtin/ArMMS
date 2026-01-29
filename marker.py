@@ -65,10 +65,10 @@ class Marker:
         if self.edgeL == None:
 
             def step(a, b):
-                A = b[0] ** 2 + b[1] ** 2 - a[0] ** 2 - a[1] ** 2
-                B = -a[0] * b[0] - a[1] * b[1]
-                z0 = np.sqrt((A + np.sqrt(A**2 + (4 * B**2))) / 2)
-                z1 = B / z0
+                A = a[0] ** 2 + a[1] ** 2 - b[0] ** 2 - b[1] ** 2
+                B = a[0] * b[0] + a[1] * b[1]
+                z0 = np.sqrt((-A + np.sqrt(A**2 + (4 * B**2))) / 2)
+                z1 = -B / z0
                 p0 = np.float32([a[0], a[1], z0])
                 p1 = np.float32([b[0], b[1], z1])
                 return np.linalg.norm(p0 - p1)
