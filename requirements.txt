@@ -1,7 +1,0 @@
-numpy==1.26.3
-opencv-contrib-python==4.6.0.66
-opencv-python==4.9.0.80
-tqdm==4.66.2
-termcolor==2.4.0
-pillow==10.2.0
-natsort==8.4.0
