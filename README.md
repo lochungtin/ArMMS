@@ -81,6 +81,8 @@ Open the `ipynb` notebook and run each cell, the inference process is identical.
 
 Edge length recovery calculation demo video created with Manim.
 
+https://github.com/user-attachments/assets/ea54e9e2-e507-469a-ac4c-d69d8ffb936a
+
 **Image Overlays Generation Step**
 
 -   Go through each subdirectory in the output folder and overlay images with equal alpha
