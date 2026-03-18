@@ -2,26 +2,13 @@
 
 ## Installation
 
-1. Create a python 3.11 virtual environment
-
-Using Conda
+1. Create a python environment using Conda
 
 ```bash
-
-conda create -n env python=3.11.5
+conda env create -f environment.yml
 ```
 
-Using Python VENV
-
-```bash
-python -m venv env
-```
-
-2. Install dependencies via the `requirement.txt`
-
-```bash
-pip install -r requirement.txt
-```
+This command will create a python3.11 environment and install all the relevant dependencies.
 
 ## Basic Usage
 
@@ -47,7 +34,11 @@ Each subdirectory must have two or more images.
 
 ### Inference
 
-Run the `run.sh` to run the inference script with the provided test data. The output directory of the test should be in the `out` folder.
+Once activating the conda environment, use the following command to run the `main.py` file using the dummy data provided.
+
+```bash
+python main.py -r data_small_groups
+```
 
 **OR**
 
@@ -87,6 +78,8 @@ Open the `ipynb` notebook and run each cell, the inference process is identical.
 -   Calculate the distances of markers in the same group with the same ID
 -   Save result dictionary as JSON
 -   Convert dictionary to rows of data and save as CSV
+
+Edge length recovery calculation demo video created with Manim.
 
 **Image Overlays Generation Step**
 
