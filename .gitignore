@@ -1,5 +1,4 @@
 __pycache__/
 .vscode/
-out/
 .DS_Store
 *.pyc
