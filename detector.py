@@ -31,7 +31,9 @@ ARUCO_DICT = {
 
 
 class Detector:
-    def __init__(self, markerType, advancedThresholding, markerFilter=None, logger=None):
+    def __init__(
+        self, markerType, advancedThresholding, markerFilter=None, logger=None
+    ):
         self.mType = markerType
         self.advThres = advancedThresholding
         self.mFilter = markerFilter
@@ -103,7 +105,9 @@ class Detector:
             for g in range(20, 2):
                 br = cv.addWeighted(image, a / 10, image, 0, float(g))
                 ad = cv.convertScaleAbs(image, alpha=a, beta=g)
-                mono = cv.cvtColor(cv.cvtColor(br, cv.COLOR_RGB2GRAY), cv.COLOR_GRAY2RGB)
+                mono = cv.cvtColor(
+                    cv.cvtColor(br, cv.COLOR_RGB2GRAY), cv.COLOR_GRAY2RGB
+                )
                 for alt in [br, ad, mono]:
                     for id, c in zip(*detect(alt)):
                         store[id] = c

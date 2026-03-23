@@ -11,7 +11,8 @@ class Marker:
         self.midpoint = self.vertices.mean(axis=0).astype(int)
         self.normalised = (self.vertices - self.midpoint).astype(int)
         self.edges = [
-            np.linalg.norm(self.vertices[a] - self.vertices[b]) for a, b in Marker.EDGE_MAP
+            np.linalg.norm(self.vertices[a] - self.vertices[b])
+            for a, b in Marker.EDGE_MAP
         ]
 
         self.edgeL = None
@@ -74,7 +75,10 @@ class Marker:
                 return np.linalg.norm(p0 - p1)
 
             self.edgeL = np.mean(
-                [step(self.normalised[a], self.normalised[b]) for a, b in Marker.EDGE_MAP]
+                [
+                    step(self.normalised[a], self.normalised[b])
+                    for a, b in Marker.EDGE_MAP
+                ]
             )
 
         return self.edgeL
