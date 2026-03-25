@@ -196,7 +196,7 @@ class App:
                     if mID not in self.results[grpName]:
                         if mID not in self.results[grpName]:
                             self.results[grpName][mID] = {}
-                        self.results[grpName][mID][(i0, i1)] = {
+                        self.results[grpName][mID][f"{i0}/{i1}"] = {
                             "d": r * d,
                             "dx": r * x,
                             "dy": r * y,
@@ -207,7 +207,8 @@ class App:
         rows = []
         for grpName, grp in self.results.items():
             for mID, pairs in grp.items():
-                for (img0, img1), img in pairs.items():
+                for imgName, img in pairs.items():
+                    img0, img1 = imgName.split("/")
                     rows.append(
                         [
                             grpName,
