@@ -12,9 +12,10 @@ def _timestamp(format=False):
 
 
 class Logger:
-    def __init__(self, outDir):
+    def __init__(self, outDir, verbose):
         self.outDir = outDir
         self.log = open(join(outDir, "log.txt"), "w+")
+        self.verbose = verbose
 
     def _output(self, msg, toConsole, noNewLine, header="", color="white"):
         header = f"[{_timestamp()}] [{header}]" if header else f"[{_timestamp()}]"

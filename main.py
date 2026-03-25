@@ -91,9 +91,9 @@ class App:
 
         makedirs(self.OUT_DIR, exist_ok=True)
 
-        self.logger = Logger(self.OUT_DIR)
+        self.logger = Logger(self.OUT_DIR, self.VERBOSE)
         self.detector = Detector(
-            self.DICT_TYPE, self.USE_ADV_THRESH, self.VALID_MARKER_IDS, self.logger
+            self.DICT_TYPE, self.USE_ADV_THRESH, self.logger, self.VALID_MARKER_IDS
         )
         self.imgs = []
         self._markers = {}
@@ -103,19 +103,19 @@ class App:
 
     def prepDir(self):
         self.logger.plain("=== INITIALISATION: Verifying Subdirectories ===")
+
         subDirs = natsorted(listdir(self.ROOT_DIR))
         for subDirName in subDirs if self.VERBOSE else tqdm(subDirs):
             if not subDirName.startswith("."):
-                self.logger.action(
-                    f"Checking folder: {subDirName}", toConsole=self.VERBOSE
-                )
+                text = f"Checking folder: {subDirName}"
+                self.logger.action(text, toConsole=self.VERBOSE)
+
                 folder = join(self.ROOT_DIR, subDirName)
                 fList = natsorted(listdir(folder))
 
                 if len(fList) < 2:
-                    self.logger.warn(
-                        f"Skipping directory - directory has less than 2 images"
-                    )
+                    text = f"Skipping directory - directory has less than 2 images"
+                    self.logger.warn(text)
 
                 self.markers[subDirName] = dict(zip(fList, [{}] * len(fList)))
                 self._markers[subDirName] = dict(zip(fList, [{}] * len(fList)))
@@ -128,22 +128,23 @@ class App:
                     if self.GEN_OVERLAYS:
                         makedirs(join(self.OUT_DIR, "images", subDirName, "overlay"))
 
-    def makeIter(self, l):
+    def _makeIter(self, l):
         return l if self.VERBOSE else tqdm(l)
 
     def detection(self):
         self.logger.plain("=== DETECTION ===")
-        for subDirName, fileName in self.makeIter(self.imgs):
+
+        for subDirName, fileName in self._makeIter(self.imgs):
             img = join(self.ROOT_DIR, subDirName, fileName)
-            i, m = self.detector.detectMarkersFromFile(img, self.VERBOSE)
+            i, m = self.detector.detectMarkersFromFile(img)
 
             if self.GEN_RESULTS:
                 res = self.detector.drawMarkersFromFile(img, i, m)
                 sOut = cv.imwrite(
                     join(self.OUT_DIR, "images", subDirName, fileName), res
                 )
-                logOut = f" -> Output file {'saved successfully' if sOut else 'failed to save'}."
-                self.logger.action(logOut, toConsole=self.VERBOSE)
+                text = f" -> Output file {'saved successfully' if sOut else 'failed to save'}."
+                self.logger.action(text, toConsole=self.VERBOSE)
 
                 if self.GEN_OVERLAYS:
                     self._results[(subDirName, fileName)] = (i, m)
@@ -156,6 +157,7 @@ class App:
             self._markers[subDirName][fileName] = dict(zip(i, _m))
 
         saveJSON(self.markers, join(self.OUT_DIR, "markers.json"))
+
         rows = []
         for grpName, grp in self.markers.items():
             for imgName, img in grp.items():
@@ -168,22 +170,25 @@ class App:
                             *list(map(str, np.array(m).flatten().tolist())),
                         ]
                     )
+
         saveCSV(MARKER_CSV_HEAD, rows, join(self.OUT_DIR, "markers.csv"))
 
     def comparison_all(self):
         self.logger.plain("=== CALCULATION AND COMPARISON ===")
-        for grpName, grp in self.makeIter(self._markers.items()):
+
+        for grpName, grp in self._makeIter(self._markers.items()):
             self.results[grpName] = {}
-            self.logger.action(
-                f"Processing group: {grpName}", toConsole=self.VERBOSE, noNewLine=1
-            )
+
+            text = f"Processing group: {grpName}"
+            self.logger.action(text, toConsole=self.VERBOSE, noNewLine=1)
+
             for i0, i1 in comb(grp.keys(), 2):
-                pair = f"{i0}/{i1}"
                 s0, s1 = set(grp[i0].keys()), set(grp[i1].keys())
                 markers = sorted(list(s0.intersection(s1)))
-                self.logger.action(
-                    f"Matching pairs found: {' '.join(markers)}", toConsole=self.VERBOSE
-                )
+
+                text = f"Matching pairs found: {' '.join(markers)}"
+                self.logger.action(text, toConsole=self.VERBOSE)
+
                 for mID in markers:
                     m0, m1 = grp[i0][mID], grp[i1][mID]
                     [x, y], d = m0 - m1
@@ -191,18 +196,18 @@ class App:
                     if mID not in self.results[grpName]:
                         if mID not in self.results[grpName]:
                             self.results[grpName][mID] = {}
-                        self.results[grpName][mID][pair] = {
+                        self.results[grpName][mID][(i0, i1)] = {
                             "d": r * d,
                             "dx": r * x,
                             "dy": r * y,
                         }
 
         saveJSON(self.results, join(self.OUT_DIR, "results.json"))
+
         rows = []
         for grpName, grp in self.results.items():
             for mID, pairs in grp.items():
-                for imgName, img in pairs.items():
-                    img0, img1 = imgName.split("/")
+                for (img0, img1), img in pairs.items():
                     rows.append(
                         [
                             grpName,
@@ -218,11 +223,11 @@ class App:
 
     def comparison_series(self):
         self.logger.plain("=== CALCULATION AND COMPARISON ===")
-        for grpName, grp in self.makeIter(self._markers.items()):
+        for grpName, grp in self._makeIter(self._markers.items()):
             self.results[grpName] = {}
-            self.logger.action(
-                f"Processing group: {grpName}", toConsole=self.VERBOSE, noNewLine=1
-            )
+
+            text = f"Processing group: {grpName}"
+            self.logger.action(text, toConsole=self.VERBOSE, noNewLine=1)
 
             markers = set()
             for _markers in grp.values():
@@ -242,7 +247,9 @@ class App:
                         [dx, dy], d = m0 - m1
                         r = self.MARKER_SIZE / (m0.edgeLength() + m1.edgeLength()) / 2
                         self.results[grpName][mID].append([r * d, r * dx, r * dy])
+
         saveJSON(self.results, join(self.OUT_DIR, "results.json"))
+
         for grpName, serieses in self.results.items():
             folder = join(self.OUT_DIR, "series", grpName)
             makedirs(folder, exist_ok=True)
@@ -251,10 +258,10 @@ class App:
 
     def overlays(self):
         self.logger.plain("=== COMPUTING OVERLAYS ===")
-        for grpName, grp in self.makeIter(self.markers.items()):
-            self.logger.action(
-                f"Processing group: {grpName}", toConsole=self.VERBOSE, noNewLine=1
-            )
+        for grpName, grp in self._makeIter(self.markers.items()):
+            text = f"Processing group: {grpName}"
+            self.logger.action(text, toConsole=self.VERBOSE, noNewLine=1)
+
             folder = join(self.OUT_DIR, "images", grpName)
             og = join(self.ROOT_DIR, grpName)
             imgFs = [
@@ -277,10 +284,9 @@ class App:
             ]
 
             if len(imgFs) == 1:
-                self.logger.action(
-                    " -> Directory only has 1 image, no overlays will be generated",
-                    toConsole=self.VERBOSE,
-                )
+                text = " -> Directory only has 1 image, no overlays will be generated"
+                self.logger.action(text, toConsole=self.VERBOSE)
+
             else:
                 output = Image.new("RGBA", imgFs[0].size)
                 edgeOut = np.zeros((*edges[0].shape, 3))
@@ -305,10 +311,10 @@ class App:
         self.prepDir()
         self.detection()
         if not self.DETECTION_ONLY:
-            if self.COMP_MODE != "series":
-                self.comparison_all()
-            else:
+            if self.COMP_MODE == "series":
                 self.comparison_series()
+            else:
+                self.comparison_all()
         if self.GEN_RESULTS and self.GEN_OVERLAYS:
             self.overlays()
         self.logger.close()
@@ -316,12 +322,4 @@ class App:
 
 if __name__ == "__main__":
     app = App(*getArgs())
-    app.run()
-    app.run()
-    app.run()
-    app.run()
-    app.run()
-    app.run()
-    app.run()
-    app.run()
     app.run()
