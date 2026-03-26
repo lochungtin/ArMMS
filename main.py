@@ -10,9 +10,9 @@ from natsort import natsorted
 from PIL import Image
 from tqdm import tqdm
 
-from detector import Detector
-from logger import Logger, _timestamp
-from marker import Marker
+from src.detector import Detector
+from src.logger import Logger, _timestamp
+from src.marker import Marker
 
 MARKER_CSV_HEAD = [
     "group",
@@ -81,9 +81,9 @@ def getArgs():
             "IDS",
             "ROOT",
             "OUTPUT",
-            "MODE",
             "DETECTION_ONLY",
             "ADV_THRESHOLDING",
+            "MODE",
             "GEN_OUTPUTS",
             "GEN_OVERLAYS",
             "VERBOSE",

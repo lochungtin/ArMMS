@@ -2,7 +2,7 @@
 
 DATA_FOLDER="data/data_small_groups"
 OUTPUT_FOLDER="out"
-JOB_FILE="job.json"
+JOB_FILE="jobs/job_docker.json"
 
 # run docker container
 
