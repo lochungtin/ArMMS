@@ -1,0 +1,11 @@
+{
+  "TYPE": "DICT_4X4_100",
+  "SIZE": 3,
+  "IDS": [0, 1, 2, 3, 4, 5],
+  "MODE": "all",
+  "DETECTION_ONLY": 1,
+  "ADV_THRESHOLDING": 0,
+  "GEN_OUTPUTS": 1,
+  "GEN_OVERLAYS": 1,
+  "VERBOSE": 1
+}

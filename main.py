@@ -43,6 +43,9 @@ def saveCSV(header, rows, fn):
 
 def getArgs():
     ap = ArgumentParser()
+    # job.json file, if specified, all other args are ignored
+    ap.add_argument("-j", "--job", type=str)
+
     ap.add_argument("-t", "--type", type=str, default="DICT_4X4_100")  # marker type
     ap.add_argument("-s", "--size", type=float, default=3)  # marker size in any unit
     ap.add_argument("-i", "--ids", nargs="+", default=[])  # valid arcuo marker ids
@@ -59,7 +62,33 @@ def getArgs():
     ap.add_argument("-x", "--overlay", type=int, default=1)  # generate overlaid images
     ap.add_argument("-v", "--verbose", type=int, default=1)  # do command line output
     args = vars(ap.parse_args())
-    return tuple(args[x] for x in args.keys())
+    if args["job"] is None:
+        return tuple(args[x] for x in args.keys())[1:]
+
+    with open(args["job"], "r") as r:
+        args = json.load(r)
+
+    if "ROOT" not in args:
+        args["ROOT"] = "data/"
+    if "OUTPUT" not in args:
+        args["OUTPUT"] = "out/"
+
+    return (
+        args[x]
+        for x in (
+            "TYPE",
+            "SIZE",
+            "IDS",
+            "ROOT",
+            "OUTPUT",
+            "MODE",
+            "DETECTION_ONLY",
+            "ADV_THRESHOLDING",
+            "GEN_OUTPUTS",
+            "GEN_OVERLAYS",
+            "VERBOSE",
+        )
+    )
 
 
 class App:
