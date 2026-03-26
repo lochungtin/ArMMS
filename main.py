@@ -2,7 +2,7 @@ import json
 from argparse import ArgumentParser
 from itertools import combinations as comb
 from os import listdir, makedirs
-from os.path import join
+from os.path import join, isfile
 
 import cv2 as cv
 import numpy as np
@@ -141,21 +141,24 @@ class App:
 
                 folder = join(self.ROOT_DIR, subDirName)
                 fList = natsorted(listdir(folder))
+                fList = list(filter(lambda x: isfile(join(folder, x)), fList))
 
                 if len(fList) < 2:
                     text = f"Skipping directory - directory has less than 2 images"
                     self.logger.warn(text)
+                else:
+                    self.markers[subDirName] = dict(zip(fList, [{}] * len(fList)))
+                    self._markers[subDirName] = dict(zip(fList, [{}] * len(fList)))
+                    for fileName in fList:
+                        if not fileName.startswith("."):
+                            self.imgs.append((subDirName, fileName))
 
-                self.markers[subDirName] = dict(zip(fList, [{}] * len(fList)))
-                self._markers[subDirName] = dict(zip(fList, [{}] * len(fList)))
-                for fileName in fList:
-                    if not fileName.startswith("."):
-                        self.imgs.append((subDirName, fileName))
-
-                if self.GEN_RESULTS:
-                    makedirs(join(self.OUT_DIR, "images", subDirName))
-                    if self.GEN_OVERLAYS:
-                        makedirs(join(self.OUT_DIR, "images", subDirName, "overlay"))
+                    if self.GEN_RESULTS:
+                        makedirs(join(self.OUT_DIR, "images", subDirName))
+                        if self.GEN_OVERLAYS:
+                            makedirs(
+                                join(self.OUT_DIR, "images", subDirName, "overlay")
+                            )
 
     def _makeIter(self, l):
         return l if self.VERBOSE else tqdm(l)
