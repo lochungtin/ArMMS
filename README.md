@@ -1,18 +1,6 @@
 # ArUCo Marker Measurement System
 
-## Installation
-
-1. Create a python environment using Conda
-
-```bash
-conda env create -f environment.yml
-```
-
-This command will create a python3.11 environment and install all the relevant dependencies.
-
-## Basic Usage
-
-### File Structure
+## File Structure
 
 The images should be structured in the following directory format.
 Each subdirectory must have two or more images.
@@ -32,13 +20,60 @@ Each subdirectory must have two or more images.
     ...
 ```
 
-### Inference
+## Basic Usage - Using Docker (recommended)
+
+### Downloading the Lastest Docker Image
+
+Pull the docker file from the docker hub with the following command.
+
+```bash
+docker pull enigmaoffline/armms
+```
+
+Then run the container with the shell file provided, modify the variables to point the directories and files that you need to processing.
+
+```bash
+./docker_run.sh
+```
+
+### Building from Source
+
+In the project directory, run the following command to build the docker image.
+
+```bash
+docker build -t armms .
+```
+
+Then run the container with the shell file as above.
+
+```bash
+./docker_run.sh
+```
+
+**OR**
+
+## Basic Usage - Running Locally
+
+1. Create a python environment using Conda
+
+```bash
+conda env create -f env/environment.yml
+```
+
+This command will create a python3.11 environment and install all the relevant dependencies.
 
 Once activating the conda environment, use the following command to run the `main.py` file using the dummy data provided.
 
 ```bash
-python main.py -r data_small_groups
+python main.py -j jobs/job_local.json
 ```
+
+You can refer to the `jobs/job_local.json` file to learn more about the arguments available for the script. Alternatively, you can pass in the arguments directly to the `main.py` on execution as such.
+
+```bash
+python main.py -r data/data_small_groups -o out/
+```
+
 
 **OR**
 
