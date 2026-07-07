@@ -222,9 +222,6 @@ class App:
                     [x, y], d = m0 - m1
                     r = self.MARKER_SIZE / ((m0.edgeLength() + m1.edgeLength()) / 2)
 
-                    print(i0, i1)
-                    print(mID, r, self.MARKER_SIZE, m0.edgeLength(), m1.edgeLength(), d, r * d)
-
                     if mID not in self.results[grpName]:
                         self.results[grpName][mID] = {}
 
@@ -280,7 +277,6 @@ class App:
                         [dx, dy], d = m0 - m1
                         r = self.MARKER_SIZE / ((m0.edgeLength() + m1.edgeLength()) / 2)
                         self.results[grpName][mID].append([r * d, r * dx, r * dy])
-                print()
 
         saveJSON(self.results, join(self.OUT_DIR, "results.json"))
 
