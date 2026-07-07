@@ -2,7 +2,7 @@ import json
 from argparse import ArgumentParser
 from itertools import combinations as comb
 from os import listdir, makedirs
-from os.path import join, isfile
+from os.path import isfile, join
 
 import cv2 as cv
 import numpy as np
@@ -156,9 +156,7 @@ class App:
                     if self.GEN_RESULTS:
                         makedirs(join(self.OUT_DIR, "images", subDirName))
                         if self.GEN_OVERLAYS:
-                            makedirs(
-                                join(self.OUT_DIR, "images", subDirName, "overlay")
-                            )
+                            makedirs(join(self.OUT_DIR, "images", subDirName, "overlay"))
 
     def _makeIter(self, l):
         return l if self.VERBOSE else tqdm(l)
@@ -172,9 +170,7 @@ class App:
 
             if self.GEN_RESULTS:
                 res = self.detector.drawMarkersFromFile(img, i, m)
-                sOut = cv.imwrite(
-                    join(self.OUT_DIR, "images", subDirName, fileName), res
-                )
+                sOut = cv.imwrite(join(self.OUT_DIR, "images", subDirName, fileName), res)
                 text = f" -> Output file {'saved successfully' if sOut else 'failed to save'}."
                 self.logger.action(text, toConsole=self.VERBOSE)
 
@@ -225,14 +221,18 @@ class App:
                     m0, m1 = grp[i0][mID], grp[i1][mID]
                     [x, y], d = m0 - m1
                     r = self.MARKER_SIZE / ((m0.edgeLength() + m1.edgeLength()) / 2)
+
+                    print(i0, i1)
+                    print(mID, r, self.MARKER_SIZE, m0.edgeLength(), m1.edgeLength(), d, r * d)
+
                     if mID not in self.results[grpName]:
-                        if mID not in self.results[grpName]:
-                            self.results[grpName][mID] = {}
-                        self.results[grpName][mID][f"{i0}/{i1}"] = {
-                            "d": r * d,
-                            "dx": r * x,
-                            "dy": r * y,
-                        }
+                        self.results[grpName][mID] = {}
+
+                    self.results[grpName][mID][f"{i0}/{i1}"] = {
+                        "d": r * d,
+                        "dx": r * x,
+                        "dy": r * y,
+                    }
 
         saveJSON(self.results, join(self.OUT_DIR, "results.json"))
 
@@ -278,8 +278,9 @@ class App:
                         self.results[grpName][mID].append([np.nan, np.nan, np.nan])
                     else:
                         [dx, dy], d = m0 - m1
-                        r = self.MARKER_SIZE / (m0.edgeLength() + m1.edgeLength()) / 2
+                        r = self.MARKER_SIZE / ((m0.edgeLength() + m1.edgeLength()) / 2)
                         self.results[grpName][mID].append([r * d, r * dx, r * dy])
+                print()
 
         saveJSON(self.results, join(self.OUT_DIR, "results.json"))
 

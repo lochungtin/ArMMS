@@ -11,8 +11,7 @@ class Marker:
         self.midpoint = self.vertices.mean(axis=0).astype(int)
         self.normalised = (self.vertices - self.midpoint).astype(int)
         self.edges = [
-            np.linalg.norm(self.vertices[a] - self.vertices[b])
-            for a, b in Marker.EDGE_MAP
+            np.linalg.norm(self.vertices[a] - self.vertices[b]) for a, b in Marker.EDGE_MAP
         ]
 
         self.edgeL = None
@@ -70,14 +69,19 @@ class Marker:
                 B = a[0] * b[0] + a[1] * b[1]
                 z0 = np.sqrt((-A + np.sqrt(A**2 + (4 * B**2))) / 2)
                 z1 = -B / z0
+                # if A == 0 and B == 0:
+                # print(a, b, A, B, z0, z1)
                 p0 = np.float32([a[0], a[1], z0])
                 p1 = np.float32([b[0], b[1], z1])
                 return np.linalg.norm(p0 - p1)
 
             self.edgeL = np.mean(
                 [
-                    step(self.normalised[a], self.normalised[b])
-                    for a, b in Marker.EDGE_MAP
+                    v
+                    for v in [
+                        step(self.normalised[a], self.normalised[b]) for a, b in Marker.EDGE_MAP
+                    ]
+                    if not np.isnan(v)
                 ]
             )
 
