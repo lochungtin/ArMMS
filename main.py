@@ -140,6 +140,11 @@ class App:
                 self.logger.action(text, toConsole=self.VERBOSE)
 
                 folder = join(self.ROOT_DIR, subDirName)
+                if isfile(folder):
+                    text = f"Skipping {folder} - not a directory"
+                    self.logger.warn(text)
+                    continue
+
                 fList = natsorted(listdir(folder))
                 fList = list(filter(lambda x: isfile(join(folder, x)), fList))
 
@@ -156,7 +161,9 @@ class App:
                     if self.GEN_RESULTS:
                         makedirs(join(self.OUT_DIR, "images", subDirName))
                         if self.GEN_OVERLAYS:
-                            makedirs(join(self.OUT_DIR, "images", subDirName, "overlay"))
+                            makedirs(
+                                join(self.OUT_DIR, "images", subDirName, "overlay")
+                            )
 
     def _makeIter(self, l):
         return l if self.VERBOSE else tqdm(l)
@@ -170,7 +177,9 @@ class App:
 
             if self.GEN_RESULTS:
                 res = self.detector.drawMarkersFromFile(img, i, m)
-                sOut = cv.imwrite(join(self.OUT_DIR, "images", subDirName, fileName), res)
+                sOut = cv.imwrite(
+                    join(self.OUT_DIR, "images", subDirName, fileName), res
+                )
                 text = f" -> Output file {'saved successfully' if sOut else 'failed to save'}."
                 self.logger.action(text, toConsole=self.VERBOSE)
 
@@ -266,7 +275,7 @@ class App:
 
             imgs = natsorted(grp.keys())
             ref = imgs[0]
-            for img in imgs[1:]:
+            for img in imgs[0:]:
                 for mID in sorted(list(markers)):
                     if mID not in self.results[grpName]:
                         self.results[grpName][mID] = []
