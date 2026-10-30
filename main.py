@@ -1,6 +1,5 @@
 import json
 from argparse import ArgumentParser
-from itertools import combinations as comb
 from os import listdir, makedirs
 from os.path import isfile, join
 
@@ -10,6 +9,7 @@ from natsort import natsorted
 from PIL import Image
 from tqdm import tqdm
 
+from src.comparison import compareAll, compareSeries
 from src.detector import Detector
 from src.logger import Logger, _timestamp
 from src.marker import Marker
@@ -214,31 +214,11 @@ class App:
         self.logger.plain("=== CALCULATION AND COMPARISON ===")
 
         for grpName, grp in self._makeIter(self._markers.items()):
-            self.results[grpName] = {}
-
             text = f"Processing group: {grpName}"
             self.logger.action(text, toConsole=self.VERBOSE, noNewLine=1)
 
-            for i0, i1 in comb(grp.keys(), 2):
-                s0, s1 = set(grp[i0].keys()), set(grp[i1].keys())
-                markers = sorted(list(s0.intersection(s1)))
-
-                text = f"Matching pairs found: {' '.join(markers)}"
-                self.logger.action(text, toConsole=self.VERBOSE)
-
-                for mID in markers:
-                    m0, m1 = grp[i0][mID], grp[i1][mID]
-                    [x, y], d = m0 - m1
-                    r = self.MARKER_SIZE / ((m0.edgeLength() + m1.edgeLength()) / 2)
-
-                    if mID not in self.results[grpName]:
-                        self.results[grpName][mID] = {}
-
-                    self.results[grpName][mID][f"{i0}/{i1}"] = {
-                        "d": r * d,
-                        "dx": r * x,
-                        "dy": r * y,
-                    }
+            log = lambda text: self.logger.action(text, toConsole=self.VERBOSE)
+            self.results[grpName] = compareAll(grp, self.MARKER_SIZE, log)
 
         saveJSON(self.results, join(self.OUT_DIR, "results.json"))
 
@@ -263,29 +243,10 @@ class App:
     def comparison_series(self):
         self.logger.plain("=== CALCULATION AND COMPARISON ===")
         for grpName, grp in self._makeIter(self._markers.items()):
-            self.results[grpName] = {}
-
             text = f"Processing group: {grpName}"
             self.logger.action(text, toConsole=self.VERBOSE, noNewLine=1)
 
-            markers = set()
-            for _markers in grp.values():
-                for mID in _markers.keys():
-                    markers.add(mID)
-
-            imgs = natsorted(grp.keys())
-            ref = imgs[0]
-            for img in imgs[0:]:
-                for mID in sorted(list(markers)):
-                    if mID not in self.results[grpName]:
-                        self.results[grpName][mID] = []
-                    m0, m1 = grp[ref].get(mID, -1), grp[img].get(mID, -1)
-                    if m0 == -1 or m1 == -1:
-                        self.results[grpName][mID].append([np.nan, np.nan, np.nan])
-                    else:
-                        [dx, dy], d = m0 - m1
-                        r = self.MARKER_SIZE / ((m0.edgeLength() + m1.edgeLength()) / 2)
-                        self.results[grpName][mID].append([r * d, r * dx, r * dy])
+            self.results[grpName] = compareSeries(grp, self.MARKER_SIZE)
 
         saveJSON(self.results, join(self.OUT_DIR, "results.json"))
 
